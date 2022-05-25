@@ -1,0 +1,63 @@
+{% extends 'engineer/shared/base.html' %}   
+
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h2>Applied Work List</h2>
+            <hr>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Work ID</th>
+                        <th>Product</th>
+                        <th>Brand Name</th>
+                        <th>Model No.</th>
+                        <th>Serial No.</th>
+                        <th>Date</th>
+                        <th>Warranty</th>
+                        <th>Description</th>
+                        <th>Posted By</th>
+                        <th>Applied Date</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for w in works %}
+                    <tr>
+                        <td>{{ w.work.id }}</td>
+                        <td>{{ w.work.product_item }}</td>
+                        <td>{{ w.work.brand_name }}</td>
+                        <td>{{ w.work.model_number }}</td>
+                        <td>{{ w.work.serial_number }}</td>
+                        <td>{{ w.work.date }}</td>
+                        <td>
+                            
+                            {% if w.work.warranty %}
+                                Yes
+                            {% else %}
+                                No
+                            {% endif %}
+                                
+                        </td>
+                        <td>{{ w.work.description }}</td>
+                        <td>{{ w.work.user.username }}</td>
+                        <td>
+                            {{ w.date }}
+                        </td>
+                        <td>
+                            {{ w.status }}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

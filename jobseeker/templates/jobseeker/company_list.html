@@ -1,0 +1,48 @@
+{% extends 'jobseeker/shared/base.html' %}   
+
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h2>Company List</h2>
+            <hr>
+            <div class="row">
+                <div class="col-sm-12">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Sl no.</th>
+                                <th>Logo</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Address</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for e in companies %}
+                                <tr>
+                                    <td>{{ forloop.counter }}</td>
+                                    <td><img src="/media/{{ e.profile_pic }}" width="80"></td>
+                                    <td>{{ e.user.first_name }}</td>
+                                    <td>{{ e.user.email }}</td>
+                                    <td>{{ e.phone }}</td>
+                                    <td>{{ e.address }}</td>
+                                    <td>
+                                        <a href="{% url 'jobseeker_job_list' company_id=e.user.id %}" class="btn btn-sm btn-primary">Career</a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

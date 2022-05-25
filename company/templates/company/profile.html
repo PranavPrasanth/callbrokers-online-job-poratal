@@ -1,0 +1,28 @@
+{% extends 'company/shared/base.html' %}   
+
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-3 text-center">
+            <h2>EDIT PROFILE</h2>
+            <hr>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group">
+                    <img src="/media/{{ data.profile_pic }}" width="100" height="100" alt="{{data.user.username}}" srcset="">
+                </div>
+                {{form2|crispy}}
+                {{form1|crispy}}
+                <div class="form-group text-right">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

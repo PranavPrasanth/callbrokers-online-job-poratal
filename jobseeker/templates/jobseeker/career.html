@@ -1,0 +1,81 @@
+{% extends 'jobseeker/shared/base.html' %}   
+
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 text-left">
+            <h2>Job Vaccancy</h2>
+            <hr>
+            
+            {% if not jobs %}
+                <p class="text-center"><strong><i>No Job Vaccancy</i></strong></p>
+            {% endif %}
+                
+            <div class="row">
+                
+                {% for v in jobs %}
+                    <!-- Card -->
+                    <div class="col-md-6">
+                        <div class="card">
+                            <!-- Card image -->
+                            <div class="card-header">
+                                <!-- Title -->
+                                <h4 class="card-title">{{ v.title }}</h4>
+                            </div>
+                            <!-- Card content -->
+                            <div class="card-body">
+                                <!-- Text -->
+                                <table class="table tableborderless">
+                                    <tr>
+                                        <th>Location</th>
+                                        <th>:</th>
+                                        <th><h4 class="card-title">{{ v.location }}</h4></th>
+                                    </tr>
+                                    <tr>
+                                        <th>Experiance</th>
+                                        <th>:</th>
+                                        <th><h4 class="card-title">{{ v.experience }} Year</h4></th>
+                                    </tr>
+                                    <tr>
+                                        <th>Salary</th>
+                                        <th>:</th>
+                                        <th><h4 class="card-title">{{ v.salary }}</h4></th>
+                                    </tr>
+                                    <tr>
+                                        <th>Vaccancy</th>
+                                        <th>:</th>
+                                        <th><h4 class="card-title">{{ v.vacancy }}</h4></th>
+                                    </tr>
+                                    <tr>
+                                        <th>Last Date</th>
+                                        <th>:</th>
+                                        <th><h4 class="card-title">{{ v.last_date }}</h4></th>
+                                    </tr>
+                                </table>
+                                <h6>Job Description</h6>
+                                <p class="card-text">{{ v.description }}</p>
+                                <!-- Button -->
+                                <form method="post">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="job_id" value="{{ v.id }}">
+                                    <button type="submit" class="btn btn-outline-primary">Applay</button>
+                                </form>
+                                <br>
+                                {% if error %}
+                                    <p class="alert alert-danger">{{error}}</p>
+                                {% endif %}
+                                    
+                            </div>
+                        </div>
+                {% endfor %}
+                    
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

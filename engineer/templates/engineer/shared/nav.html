@@ -1,0 +1,47 @@
+<nav class="navbar navbar-expand-sm navbar-dark bg-danger">
+    <a class="navbar-brand" href="{% url 'home' %}">Callbrokers.com</a>
+    <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
+        aria-expanded="false" aria-label="Toggle navigation"></button>
+    <div class="collapse navbar-collapse" id="collapsibleNavId">
+        {% if user.is_authenticated %}
+        <span class="text-white mx-3">Welcome  {{user.first_name}}{{ user.last_name}},</span>
+        {% endif %} 
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'engineer_home' %}">Home <span class="sr-only">(current)</span></a>
+            </li>
+
+
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'engineer_profile' %}">Profile<span class="sr-only"></span></a>
+            </li>
+
+             
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'engineer_work_list' %}">VIEW/APPLAY WORKS<span class="sr-only"></span></a>
+            </li>
+
+              
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'engineer_applied_work' %}">APPLIED WORK STATUS<span class="sr-only"></span></a>
+            </li>
+
+              
+              
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'engineer_approved_work' %}">VIEW APPROVED WORKS<span class="sr-only"></span></a>
+            </li>
+
+
+             
+              
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'engineer_create_report' %}">CREATE/UPLOAD REPORTS<span class="sr-only"></span></a>
+            </li>
+
+            <form class="form-inline my-2 my-lg-0">
+              
+              <a class="btn btn-outline-primary my-2 my-sm-0" href="{% url 'account_logout' %}">logout</a>
+            </form>
+
+        </nav>

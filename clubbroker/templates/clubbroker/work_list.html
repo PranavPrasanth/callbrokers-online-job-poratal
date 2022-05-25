@@ -1,0 +1,56 @@
+{% extends 'clubbroker/shared/base.html' %}   
+
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h2>LIST ALL WORKS</h2>
+            <hr>
+            <div class="row">
+                <div class="col-sm-12">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Sl no.</th>
+                                <th>Posted By</th>
+                                <th>Product Name</th>
+                                <th>Brand Name</th>
+                                <th>Model Number</th>
+                                <th>Serial Number</th>
+                                <th>Warranty</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for e in works %}
+                                <tr>
+                                    <td>{{ forloop.counter }}</td>
+                                    <th>{{ e.user }}</th>
+                                    <td>{{ e.product_item }}</td>
+                                    <td>{{ e.brand_name }}</td>
+                                    <td>{{ e.model_number }}</td>
+                                    <td>{{ e.serial_number }}</td>
+                                    <td>
+                                        
+                                        {% if e.warranty %}
+                                            Yes
+                                        {% else %}
+                                            No
+                                        {% endif %}
+                                            
+                                    </td>
+                                    <td>{{ e.description }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

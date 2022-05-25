@@ -1,0 +1,71 @@
+{% extends 'customer/shared/base.html' %}   
+
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h2>SEARCH ENGINEERS</h2>
+            <hr>
+            <div class="row">
+                <div class="col-sm-4">
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="form-group text-right">
+                            <label for="dist">Choose District : </label>
+                            <select name="dist" id="dist" class="form-control">
+                                <option value="----------">----------</option>
+                                
+                                {% for d in data %}
+                                    <option value="{{ d }}">{{ d }}</option>
+                                {% endfor %}
+                                    
+                            </select>
+                        </div>
+                        <div class="form-group text-right">
+                            <button type="submit" class="btn btn-primary">Search</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-sm-12">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Sl no.</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Address</th>
+                                <th>District</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for e in engineers %}
+                                <tr>
+                                    <td>{{ forloop.counter }}</td>
+                                    <td>{{ e.user.first_name }} {{ e.user.last_name }}</td>
+                                    <td>{{ e.user.email }}</td>
+                                    <td>{{ e.phone }}</td>
+                                    <td>{{ e.address }}</td>
+                                    <td>{{ e.district }}</td>
+                                    <td>
+                                        <a href="/media/{{ e.id_proof }}" class="btn btn-sm btn-primary" target="_blank" rel="noopener noreferrer">view id</a>
+                                        <a href="/media/{{ e.id_proof }}" class="btn btn-sm btn-success" download="">download</a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,59 @@
+{% extends 'engineer/shared/base.html' %}   
+
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h2>View Feedback</h2>
+            <hr>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Work ID</th>
+                        <th>Product</th>
+                        <th>Brand Name</th>
+                        <th>Model No.</th>
+                        <th>Serial No.</th>
+                        <th>Date</th>
+                        <th>Warranty</th>
+                        <th>Description</th>
+                        <th>Posted By</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for work in works %}
+                    <tr>
+                        <td>{{ work.id }}</td>
+                        <td>{{ work.product_item }}</td>
+                        <td>{{ work.brand_name }}</td>
+                        <td>{{ work.model_number }}</td>
+                        <td>{{ work.serial_number }}</td>
+                        <td>{{ work.date }}</td>
+                        <td>
+                            
+                            {% if work.warranty %}
+                                Yes
+                            {% else %}
+                                No
+                            {% endif %}
+                                
+                        </td>
+                        <td>{{ work.description }}</td>
+                        <td>{{ work.user.username }}</td>
+                        <td>
+                            <a href="{% url 'engineer_apply_work' work_id=work.id %}" class="btn btn-primary btn-sm">Apply</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,41 @@
+{% extends 'account/shared/base.html' %}
+
+{%load static %}
+
+{% load crispy_forms_tags %}
+
+{% block content %} 
+
+<body style="background-color:rgb(88, 126, 136)"> 
+    <div class="row">
+          
+        <div class="col-9 l-5 ml-5 mt-5 text-center"   style="color: rgb(220, 176, 0);background-color: rgb(10, 42, 50);margin-left: 120%; margin-top:  100px; font-size: 50px;font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+            Callbrokers.com <span style='font-size:40px;'>&#128373;</span>
+        <div class="col-3 pl-5 ml-5 mt-5 text-center" style="color: azure;background-color: black;"></div></div>
+        <marquee> <i><b><h6>login---> It is a web based service providing  solution through which Skilld workers registered them for a  specific Skill.Using this System general, public or organized sector user can easily select the worker as per their need</h6></b></i></marquee>
+            <marquee direction="right" 
+                behavior="alternate" 
+                style="border:rgb(8, 48, 57) 1px SOLID"></marquee></div>
+<div class="row">
+   
+    <div class="col-md-4 offset-md-3 text-center my-1">
+ 
+
+    <form method="post">
+        {% csrf_token %}  
+        {{form|crispy}}
+        <div class="form-group">
+       
+           <button type="submit" class="btn btn-dark">LOGIN</button>
+        
+        </div>
+        {% if error %}
+            <br>
+            <div class="alert alert-danger">
+                {{error}}
+            </div>
+        {% endif %}
+    </form>
+    </div>
+</div>
+{% endblock content %}   

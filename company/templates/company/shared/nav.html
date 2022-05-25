@@ -1,0 +1,77 @@
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <a class="navbar-brand" href="{% url 'home' %}">callbrokers.com</a>
+    <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
+        aria-expanded="false" aria-label="Toggle navigation"></button>
+    <div class="collapse navbar-collapse" id="collapsibleNavId">
+        {% if user.is_authenticated %}
+        <span class="text-white mx-3">welcome {{user.first_name}}</span>
+        {% endif %}
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item active">
+               
+                <a class="nav-link" href="{% url 'company_home' %}">Home <span class="sr-only">(current)</span></a>
+            </li>
+
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'company_profile' %}">Profile <span class="sr-only"></span></a>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle active" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">WORK</a>
+                <div class="dropdown-menu" aria-labelledby="dropdownId">
+                    <a class="dropdown-item" href="{% url 'company_create_work' %}">Add</a>
+                    <a class="dropdown-item" href="{% url 'company_manage_work' %}">MANAGE</a>
+                    <a class="dropdown-item" href="{% url 'company_work_request' %}">Work Approval</a>
+                </div>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle active" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">VACCANCY</a>
+                <div class="dropdown-menu" aria-labelledby="dropdownId">
+                    <a class="dropdown-item" href="{% url 'company_create_vaccancy' %}">ADD</a>
+                    <a class="dropdown-item" href="{% url 'company_vaccancy_list' %}">MANAGE</a>
+                    <a class="dropdown-item" href="{% url 'company_job_applications' %}">JOB APPLICATION</a>
+                </div>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle active" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ENGINEERS</a>
+                <div class="dropdown-menu" aria-labelledby="dropdownId">
+                    <a class="dropdown-item" href="{% url 'company_search_engineers' %}">SEARCHENGINEERS</a>
+                    <a class="dropdown-item" href="{% url 'company_track_work' %}">TRACKENGINEERS</a>
+                </div>
+            </li>
+           
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'company_change_password' %}">ChangePassword<span class="sr-only"></span></a>
+            </li>
+
+            <form class="form-inline my-2 my-lg-0">
+             
+                <a class="btn btn-outline-danger my-2 my-sm-0" href="{% url 'account_logout' %}">logout</a>
+            </form>
+
+
+
+
+
+
+
+<!-- 
+            <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+                <div class="dropdown-menu" aria-labelledby="dropdownId">
+                    <a class="dropdown-item" href="#">Action 1</a>
+                    <a class="dropdown-item" href="#">Action 2</a>
+                </div>
+            </li>
+        </ul> -->
+        <!-- <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form> -->
+    </div>
+</nav>

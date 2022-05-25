@@ -1,0 +1,57 @@
+<nav class="navbar navbar-expand-sm navbar-dark bg-success">
+    <a class="navbar-brand" href="{% url 'home' %}">Callbrokers.com</a>
+    <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
+        aria-expanded="false" aria-label="Toggle navigation"></button>
+    <div class="collapse navbar-collapse" id="collapsibleNavId">
+        {% if user.is_authenticated %}
+        <span class="text-white mx-3">Welcome  {{user.first_name}}{{ user.last_name}},</span>
+        {% endif %} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+           
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'customer_home' %}">Home <span class="sr-only">(current)</span></a>
+            </li>
+
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'customer_profile' %}">Profile<span class="sr-only"></span></a>
+            </li>
+
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'customer_search_engineers' %}">SEARCH ENGINEERS<span class="sr-only"></a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'customer_track_work' %}">TRACKENGINEERS<span class="sr-only"></span></a>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle active" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">WORK</a>
+                <div class="dropdown-menu" aria-labelledby="dropdownId">
+                    <a class="dropdown-item" href="{% url 'customer_create_work' %}">Add</a>
+                    <a class="dropdown-item" href="{% url 'customer_manage_work' %}">MANAGE</a>
+                    <a class="dropdown-item" href="{% url 'customer_work_request' %}">Work Approval</a>
+                </div>
+            </li>
+         
+         <li class="nav-item active">
+                <a class="nav-link" href="{% url 'customer_feedback' %}">Feedback<span class="sr-only"></span></a>
+            </li>
+
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'customer_change_password' %}">Change Password<span class="sr-only"></span></a>
+            </li>
+            
+            <form class="form-inline my-2 my-lg-0">
+              
+              
+                <a class="btn btn-outline-danger my-2 my-sm-0" href="{% url 'account_logout' %}">logout</a>
+            </form>
+        </ul>
+        <!-- <ul class="navbar-nav mls-auto mt-2 mt-lg-0">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">
+                    <img src="/media/{{data.profile_pic}}" alt="callbrokers" width="50" height="50">
+                </a> -->
+            </li>
+        </ul>
+    </div>
+</nav>

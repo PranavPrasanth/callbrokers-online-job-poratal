@@ -1,0 +1,58 @@
+{% extends 'jobseeker/shared/base.html' %}   
+
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h2>Applied Job List</h2>
+            <hr>
+            <div class="row">
+                <div class="col-sm-12">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Sl no.</th>
+                                <th>Job</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for e in jobs %}
+                                <tr>
+                                    <td>{{ forloop.counter }}</td>
+                                    <td>{{ e.job }}</td>
+                                    <td>{{ e.date }}</td>
+                                    <td>
+                                        {% if e.status == 'Pending' %}
+                                            <span class="badge badge-info">{{ e.status }}</span>
+                                        {% elif e.status == 'Rejected' %}
+                                            <span class="badge badge-danger">{{ e.status }}</span>
+                                        {% else %}
+                                            <span class="badge badge-success">{{ e.status }}</span>
+                                        {% endif %}
+                                    </td>
+                                    <td>
+                                        
+                                        {% if e.status == 'Pending' %}
+                                            <a href="{% url 'jobseeker_delete_applied_job' job_id=e.id %}" class="btn btn-sm btn-danger">Delete</a>
+                                        {% else %}
+                                            <!-- <a href="#" class="btn btn-sm btn-primary">View</a> -->
+                                        {% endif %}
+                                            
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

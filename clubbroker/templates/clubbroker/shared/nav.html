@@ -1,0 +1,36 @@
+<nav class="navbar navbar-expand-sm navbar-dark bg-info">
+    <a class="navbar-brand" href="{% url 'home' %}">Callbrokers.com</a>
+    <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
+        aria-expanded="false" aria-label="Toggle navigation"></button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        {% if user.is_authenticated %}
+        <span class="text-white mx-3">Welcome {{user.first_name}}</span>
+        {% endif %}
+    <div class="collapse navbar-collapse" id="collapsibleNavId">
+
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'clubbroker_home' %}">HOME <span class="sr-only">(current)</span></a>
+            </li>&nbsp;
+
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'clubbroker_profile' %}">PROFILE<span class="sr-only"></span></a>
+            </li>&nbsp;&nbsp;
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'clubbroker_search_engineers' %}">SEARCH ENGINEERS <span class="sr-only">(current)</span></a>
+            </li>
+              
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'clubbroker_work_list' %}">VIEW WORKS <span class="sr-only">(current)</span></a>
+            </li>
+
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <li class="nav-item active">
+                <a class="nav-link" href="{% url 'clubbroker_change_password' %}">ChangePassword<span class="sr-only"></span></a>
+            </li>       
+            <form class="form-inline my-2 my-lg-0">
+              
+                <a class="btn btn-outline-danger my-2 my-sm-0" href="{% url 'account_logout' %}">logout</a>
+              </form
+
+    </div>
+</nav>

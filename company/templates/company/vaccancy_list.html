@@ -1,0 +1,51 @@
+{% extends 'company/shared/base.html' %}   
+
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h2>MANAGE VACCANCY</h2>
+            <hr>
+            <div class="row">
+                <div class="col-sm-12">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Sl no.</th>
+                                <th>Job Title</th>
+                                <th>Description</th>
+                                <th>Location</th>
+                                <th>Salary</th>
+                                <th>Experiance</th>
+                                <th>No of Vaccancy</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for e in vaccancies %}
+                                <tr>
+                                    <td>{{ forloop.counter }}</td>
+                                    <td>{{ e.title }}</td>
+                                    <td>{{ e.description }}</td>
+                                    <td>{{ e.location }}</td>
+                                    <td>{{ e.salary }}</td>
+                                    <td>{{ e.experience }} Year</td>
+                                    <td>{{ e.vacancy }}</td>
+                                    <td>
+                                        <a href="{% url 'company_delete_vaccancy_detail' v_id=e.id %}" class="btn btn-sm btn-danger">Delete</a>
+                                        <a href="{% url 'company_edit_vaccancy_detail' v_id=e.id %}" class="btn btn-sm btn-success">Edit</a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,54 @@
+{% extends 'company/shared/base.html' %}   
+
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h2>Incomming Work Request</h2>
+            <hr>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Work ID</th>
+                        <th>work</th>
+                        <th>Engineer Name</th>
+                        <th>Phone</th>
+                        <th>Email</th>
+                        <th>Address</th>
+                        <th>Applied Date</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for w in works %}
+                    <tr>
+                        <td>{{ w.work.id }}</td>
+                        <td>{{ w.work.product_item }}</td>
+                        <td>{{ w.engineer.user.first_name }} {{ w.engineer.user.last_name }}</td>
+                        <td>{{ w.engineer.phone }}</td>
+                        <td>{{ w.engineer.user.email }}</td>
+                        <td>{{ w.engineer.address }}</td>
+                        <td>
+                            {{ w.date }}
+                        </td>
+                        <td>
+                            {{ w.status }}
+                        </td>
+                        <td>
+                            <a href="{% url 'company_approve_work' app_work_id=w.id %}" class="btn btn-primary">Approve</a>
+                            <a href="{% url 'company_approve_work' app_work_id=w.id %}" class="btn btn-danger">Reject</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

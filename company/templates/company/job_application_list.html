@@ -1,0 +1,65 @@
+{% extends 'company/shared/base.html' %}   
+
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h2>JOB APPLICATION LIST</h2>
+            <hr>
+            <div class="row">
+                <div class="col-sm-12">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Sl no.</th>
+                                <th>Name</th>
+                                <th>Phone</th>
+                                <th>Address</th>
+                                <th>Qualification</th>
+                                <th>Job</th>
+                                <th>Date</th>
+                                <th>Current Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for e in applications %}
+                                <tr>
+                                    <td>{{ forloop.counter }}</td>
+                                    <td>{{ e.jobseeker.user.first_name }}{{ e.jobseeker.user.last_name }}</td>
+                                    <td>{{ e.jobseeker.phone }}</td>
+                                    <td>{{ e.jobseeker.address }}</td>
+                                    <td>{{ e.jobseeker.qualification }}</td>
+                                    <td>{{ e.job }}</td>
+                                    <td>{{ e.date }}</td>
+                                    <td>
+                                        
+                                        {% if e.status == 'Pending' %}
+                                            <span class="badge badge-info">{{ e.status }}</span>
+                                        {% elif e.status == 'Rejected' %}
+                                            <span class="badge badge-danger">{{ e.status }}</span>
+                                        {% else %}
+                                            <span class="badge badge-success">{{ e.status }}</span>
+                                        {% endif %}
+                                            
+                                    </td>
+                                    <td>
+                                        <div class="btn-group">
+                                            <a href="{% url 'company_reject_application' app_id=e.id %}" class="btn btn-sm btn-danger">Reject</a>
+                                            <a href="{% url 'company_accept_application' app_id=e.id %}" class="btn btn-sm btn-success">Accept</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
